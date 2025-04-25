@@ -47,7 +47,7 @@ const Banner = () => {
         </div>
 
         {/* Right Section - Image */}
-        <div className="order-1 md:order-2 w-full md:w-1/2 flex justify-center md:justify-end mt-10 md:mt-0">
+        <div className="order-1 md:order-2 w-full md:w-1/2 flex justify-center md:justify-end mt-10 md:mt-10">
           <img
             src="Banner.jpg"
             alt="book images"
