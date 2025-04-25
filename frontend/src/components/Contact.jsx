@@ -12,7 +12,7 @@ const Contact = () => {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post("http://localhost:4001/contact", data);
+      const response = await axios.post("http://bookstore-3ch5.onrender.com/contact", data);
       console.log("Form Data Submitted:", response.data);
       reset(); // Reset the form after successful submission
       alert("Your message has been sent successfully!"); // Success message
