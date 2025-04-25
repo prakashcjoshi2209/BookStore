@@ -1,6 +1,3 @@
-
-
-
 import React, { useEffect, useState } from "react";
 import Login from "./Login";
 import { Link } from "react-router-dom";
@@ -65,11 +62,12 @@ const Navbar = () => {
     >
       <div className="navbar">
         <div className="navbar-start flex items-center space-x-4">
-          <div className="dropdown">
+          {/* Mobile dropdown */}
+          <div className="dropdown lg:hidden">
             <div
               tabIndex={0}
               role="button"
-              className="btn btn-ghost lg:hidden"
+              className="btn btn-ghost"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -93,11 +91,14 @@ const Navbar = () => {
               {navItems}
             </ul>
           </div>
+
+          {/* Website Name */}
           <Link to="/" className="text-3xl font-extrabold text-gray-900 dark:text-white cursor-pointer">
             bookStore
           </Link>
         </div>
 
+        {/* Navbar items (desktop) */}
         <div className="navbar-end space-x-6 flex items-center">
           <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal px-1">{navItems}</ul>
