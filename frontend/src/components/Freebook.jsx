@@ -3,40 +3,33 @@ import React, { useEffect, useState } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import axios from 'axios'
+import axios from "axios";
 // import list from "../../public/list.json";
 import Card from "./Card";
 
 const Freebook = () => {
+  const [book, setbook] = useState([]);
+  useEffect(() => {
+    const getbook = async () => {
+      try {
+        const res = await axios.get("https://bookstore-3ch5.onrender.com/book");
+        console.log(res.data);
+        setbook(res.data.filter((data) => data.category === "free"));
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
 
-
-
-       const [book, setbook] = useState([]);
-        useEffect(() => {
-          const getbook = async () => {
-            try {
-              const res = await axios.get("https://bookstore-3ch5.onrender.com/book");
-              console.log(res.data);
-              setbook(res.data.filter((data) => data.category === "free"));
-            } catch (error) {
-              console.log("error", error);
-            }
-          };
-      
-          getbook();
-        }, []);
-      
-
-
-  // const filterdata = list.filter((data) => data.category === "free");
+    getbook();
+  }, []);
 
   var settings = {
     dots: true,
-    infinite: false,
+    infinite: true,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 3,
-    initialSlide: 0,
+    initialSlide: 0, // Make sure this is explicitly 0
     responsive: [
       {
         breakpoint: 1024,
@@ -52,7 +45,7 @@ const Freebook = () => {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          initialSlide: 2,
+          initialSlide: 0, // Set for mobile as well
         },
       },
       {
@@ -60,12 +53,12 @@ const Freebook = () => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          initialSlide: 0, // Set for mobile as well
         },
       },
     ],
   };
 
-  // console.log(filterdata);
 
   return (
     <>
@@ -73,15 +66,18 @@ const Freebook = () => {
         <div>
           <h1 className="font-semibold text-xl pb-2">Free Offered Courses</h1>
           <p>
-          We offer a wide range of expertly crafted courses completely free of cost. These courses are designed to help you learn at your own pace, enhance your skills, and grow your knowledge without any financial barriers.
+            We offer a wide range of expertly crafted courses completely free of
+            cost. These courses are designed to help you learn at your own pace,
+            enhance your skills, and grow your knowledge without any financial
+            barriers.
           </p>
         </div>
 
         <div>
           <Slider {...settings}>
-          {book.map((data)=>(
-            <Card data= {data} key= {data.id}/>
-          ))}
+            {book.map((data) => (
+              <Card data={data} key={data.id} />
+            ))}
           </Slider>
         </div>
       </div>
