@@ -19,9 +19,7 @@ const Card = ({ data }) => {
           <p className="text-sm text-gray-600">{data.title}</p>
           <div className="card-actions justify-between items-center mt-2">
             <div className="badge badge-outline">${data.price}</div>
-            <button className="px-3 py-1 text-sm rounded-full border-2 border-pink-500 hover:bg-pink-500 hover:text-white duration-200">
-              Buy Now
-            </button>
+            
           </div>
         </div>
       </div>
